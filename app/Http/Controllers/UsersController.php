@@ -280,6 +280,8 @@ class UsersController extends Controller
             );
              
         }
+        $patient_type = DB::table('patient_type')->where('patient_type_id', $user->patient_type_id)->first();
+        return view('me' ,['user' => $user],['patient_type' => $patient_type]);
     }
         public function updatedoctor(Request $request, $id)
     {
