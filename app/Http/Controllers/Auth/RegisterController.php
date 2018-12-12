@@ -6,10 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
-
 
 class RegisterController extends Controller
 {
@@ -90,7 +89,7 @@ class RegisterController extends Controller
 
         $patient_type = DB::table('patient_type')->where('patient_type_id', $user->patient_type_id)->first();
         //return view('me' ,['user' => $user]);
-        return view('me' ,['user' => $user],['patient_type' => $patient_type]);
+       // return view('me' ,['user' => $user],['patient_type' => $patient_type]);
     }
 
     /**
@@ -100,8 +99,10 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
+    
     {
-        return User::create([
+       
+       return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -110,9 +111,12 @@ class RegisterController extends Controller
              'blood_group' => $data['blood_group'],
              'age' => $data['age'],
              'gender' => $data['gender'],
+            // 'typeID'=>$data['typeID'],
 
 
             
         ]);
     }
+
+    
 }

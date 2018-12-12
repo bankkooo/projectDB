@@ -18,7 +18,8 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $primaryKey= 'id';
     protected $fillable = [
-        'name','surname','birthday','blood_group','age','gender','patient_type_id', 'email', 'password',
+        'id','name','surname','birthday','blood_group','age','gender','patient_type_id', 'email', 'password','typeID',
+
     ];
 
     /**
@@ -29,7 +30,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function id()
+	{
+		return $this->id; // this looks for an is_admin column in your users table
+    }
     public function isAdmin()
 	{
 		return $this->is_admin; // this looks for an is_admin column in your users table
@@ -38,13 +42,9 @@ class User extends Authenticatable
 	{
 		return $this->patientID; // this looks for an is_admin column in your users table
     }
-    public function userID()
+    public function typeID()
 	{
-		return $this->userID; // this looks for an is_admin column in your users table
-    }
-    public function userType()
-	{
-		return $this->userType; // this looks for an is_admin column in your users table
+		return $this->typeID; // this looks for an is_admin column in your users table
     }
     
     public function patient_type(){
